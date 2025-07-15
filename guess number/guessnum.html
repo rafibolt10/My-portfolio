@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess the number</title>
+    <style>
+        body{
+            background-image: url(guessim.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .guess {
+            background-color: rgba(245, 251, 255, 0.902);
+            border-style: solid;
+            border-color: black;
+            text-align: center;
+            margin-left: 400px;
+            margin-top: 150px;
+            margin-right: 300px;
+            margin-bottom: 300px;
+            padding-top:30px ;
+            padding-left: 20px;
+           padding-bottom: 30px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        #score {
+            font-weight: bold;
+        }
+        @media only screen and (max-width: 480px) {
+    .guess {
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    h1 {
+        font-size: 10px;
+    }
+
+    input {
+        width: 100%;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    #result, #score {
+        font-size: 18px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="guess">
+        <h1>Guess the correct number (1 - 10)</h1>
+        <input id="guessnum" type="number" min="1" max="10">
+        <button onclick="check()">Check</button>
+        <p id="result">You are wrong/Right</p>
+        <p id="score">Score: 10</p>
+        <script>
+            var guessnum = document.getElementById("guessnum");
+            var result = document.getElementById("result");
+            var score = document.getElementById("score");
+            var randomnum = Math.floor(Math.random() * 10) + 1;
+            var totalscore = 10;
+
+            function check() {
+                var enterednum = Number(guessnum.value);
+
+                if (enterednum < 1 || enterednum > 10 || isNaN(enterednum)) {
+                    alert("Please enter a number between 1 and 10.");
+                    return;
+                }
+
+                if (totalscore <= 0) {
+                    result.textContent = "Game Over! Refresh to try again.";
+                    guessnum.disabled = true;
+                    return;
+                }
+
+                if (enterednum === randomnum) {
+                    result.textContent = "Right! you score increased ";
+                    alert("Congrats! You guessed the correct number.");
+                    totalscore += 1;
+                    randomnum = Math.floor(Math.random() * 10) + 1; // generate new number
+                } else {
+                    result.textContent = "Wrong!";
+                    totalscore -= 1;
+                }
+
+                score.textContent = "Score : " + totalscore;
+
+                if (totalscore <= 0) {
+                    result.textContent = "Game Over! Refresh to play again.";
+                    guessnum.disabled = true;
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

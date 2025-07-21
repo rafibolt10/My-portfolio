@@ -1,0 +1,17 @@
+body{
+    background-color: rgb(239, 248, 255);
+    text-align: center;
+    margin-top: 220px;
+}
+div{
+    margin: auto;
+    border-style: solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 250px;
+
+}
+ul {
+    list-style-type: none;
+    padding-left: 0; /* Optional: removes left spacing */
+  }
